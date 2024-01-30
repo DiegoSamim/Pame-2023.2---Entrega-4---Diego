@@ -12,6 +12,8 @@ para as próximas produções e acompanhar seus status.
 - [x] Criação do Arquitetura Nest
 - [x] Instalação do Prisma
 - [x] Desenvolvimento do Schema
+- [ ] Imports do Prisma
+- [ ] Criação das entidades (resource)
 - [ ] Criação das rotas (Controller)
 - [ ] Desenvolvimento do banco de dados (Service)
 - [ ] Testagem
