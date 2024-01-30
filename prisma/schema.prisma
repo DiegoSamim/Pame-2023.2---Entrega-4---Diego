@@ -1,0 +1,59 @@
+
+// Define o gerador de cliente Prisma para JavaScript
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define a fonte de dados como um banco de dados SQLite e o caminho do arquivo do banco de dados
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+
+model Funcionario {
+  id                         Int @id @unique @default(autoincrement()) 
+  nome                       String
+  cargo                      String
+  registros_de_estoque       RegistrodeEstoque[] // relação: (um Funcionário tem muitos Registros de Estoque)
+  ingredientes_encomendados  IngredienteEncomendado[] // relação: (um Funcionário pode fazer muitas Encomendas de Ingredientes)
+}
+
+model ProdutoEmEstoque {
+  id                    Int @id @unique @default(autoincrement())
+  nome_do_produto       String
+  descricao             String
+  preco                 Int
+  quantidade_em_estoque Int
+  registros             RegistrodeEstoque[]
+}
+
+model IngredienteEmEstoque {
+  id                    Int @id @unique @default(autoincrement())
+  nome                  String
+  data_de_validade      DateTime
+  quantidade_em_estoque Int
+  encomendas            IngredienteEncomendado[]
+}
+
+model RegistrodeEstoque {
+  id                Int @id @unique @default(autoincrement())
+  id_funcionario    Int 
+  id_produto        Int 
+  tipo_de_transacao String
+  data              DateTime
+  quantidade        Int
+  funcionario       Funcionario      @relation(fields: [id_funcionario], references: [id])
+  produto           ProdutoEmEstoque @relation(fields: [id_produto], references: [id])
+}
+
+model IngredienteEncomendado {
+  id             Int @id @unique @default(autoincrement())
+  id_funcionario Int 
+  id_ingrediente Int
+  status         String
+  data           DateTime
+  quantidade     Int
+  funcionario    Funcionario          @relation(fields: [id_funcionario], references: [id])
+  ingrediente    IngredienteEmEstoque @relation(fields: [id_ingrediente], references: [id])
+}
