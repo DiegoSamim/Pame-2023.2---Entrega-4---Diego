@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsNumber, IsDate } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsDate, Min } from 'class-validator';
 
 export class CreateEntradaDeProdutoDto {
     @IsInt({ message: 'O ID do produto deve ser um número inteiro.' })
@@ -23,5 +23,6 @@ export class CreateEntradaDeProdutoDto {
 
     @IsInt({ message: 'A quantidade deve ser um número inteiro.' })
     @IsNotEmpty({ message: 'A quantidade não pode estar vazia.' })
+    @Min(1, { message: 'A quantidade mínima é 1.' })
     quantidade: number;
 }

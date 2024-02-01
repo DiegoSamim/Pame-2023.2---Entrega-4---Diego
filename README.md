@@ -13,9 +13,9 @@ para as próximas produções e acompanhar seus status.
 - [x] Instalação do Prisma
 - [x] Desenvolvimento do Schema
 - [x] Imports do Prisma
-- [ ] Criação das entidades (resource)
-- [ ] Criação das rotas (Controller)
-- [ ] Desenvolvimento do banco de dados (Service)
+- [x] Criação das entidades (resource)
+- [x] Criação das rotas (Controller)
+- [x] Desenvolvimento do banco de dados (Service)
 - [ ] Validação
 - [ ] Autenticação
 
@@ -30,10 +30,12 @@ para as próximas produções e acompanhar seus status.
   - id: number; nome: string; telefone: string; email: string; senha: string; cargo: string;
 - [x] **Fornecedor**
   - id: number; nome_fornecedor: string; endereco: string; telefone: string; email: string;
-- [x] **Entrada_de_Produto (Ainda não funcional)**
+- [x] **Entrada_de_Produto**
   - id: number; id_produto: number; id_fornecedor: number; id_funcionario: number; data: Date; valor_total_entrada: number; quantidade: number;
-- [ ] **Encomenda_de_Ingrediente**
-- [ ] **Saida_de_Produto**
+- [x] **Encomenda_de_Ingrediente**
+  - id: number; id_entrada: number; id_funcionario: number; status: string; data_de_validade: Date;
+- [x] **Saida_de_Produto**
+  - id: number; id_funcionario: number; id_produto: number; data: Date; quantidade: number;
 - [x] **Produto**
   - id: number; id_categoria: number; nome_produto: string; descricao: string; valor_produto: number;
 - [x] **Estoque**
@@ -42,7 +44,6 @@ para as próximas produções e acompanhar seus status.
   - id: number; tipo_categoria: string;
 
 ### Relações
-
 
 
 ## Rotas e Funções

@@ -6,9 +6,11 @@ import { EntradaDeProdutoModule } from './entrada_de_produto/entrada_de_produto.
 import { CategoriaModule } from './categoria/categoria.module';
 import { EstoqueModule } from './estoque/estoque.module';
 import { ProdutoModule } from './produto/produto.module';
+import { EncomendaDeIngredientesModule } from './encomenda_de_ingredientes/encomenda_de_ingredientes.module';
+import { SaidaDeProdutoModule } from './saida_de_produto/saida_de_produto.module';
 
 @Module({
-  imports: [FuncionarioModule, FornecedorModule, EntradaDeProdutoModule, CategoriaModule, EstoqueModule, ProdutoModule],
+  imports: [FuncionarioModule, FornecedorModule, EntradaDeProdutoModule, CategoriaModule, EstoqueModule, ProdutoModule, EncomendaDeIngredientesModule, SaidaDeProdutoModule],
   controllers: [],
   providers: [PrismaService],
 })

@@ -44,6 +44,8 @@ model Entrada_de_Produto {
   quantidade          Int
 
   // Campo de Relações
+  encomenda_de_ingredientes Encomenda_de_Ingrediente[]
+
   //FK - Uma entrada de produto está associada a um produto específico
   produto     Produto     @relation(fields: [id_produto], references: [id])
   //FK - Uma entrada de produto está associada a um fornecedor específico
@@ -51,22 +53,22 @@ model Entrada_de_Produto {
   //FK - Uma entrada de produto está associada a um funcionário específico
   funcionario Funcionario @relation(fields: [id_funcionario], references: [id])
 
-  encomenda_de_ingredientes Encomenda_de_Ingrediente[] // Uma entrada de produto pode estar associada a várias encomendas de ingredientes
 }
 
 model Encomenda_de_Ingrediente {
   id               Int      @id @unique @default(autoincrement())
-  id_entrada       Int
+  id_entrada       Int      @unique
   id_funcionario   Int
   status           String
   data_de_validade DateTime
 
   // Campo de Relações
-  //FK - Uma encomenda de ingrediente está associada a um funcionário específico
+  // FK - Uma encomenda de ingrediente está associada a um funcionário específico
   funcionario        Funcionario        @relation(fields: [id_funcionario], references: [id])
-  //FK - Uma encomenda de ingrediente está associada a uma entrada de produto específica
+  // Relação one-to-one com Entrada_de_Produto
   entrada_de_produto Entrada_de_Produto @relation(fields: [id_entrada], references: [id]) 
 }
+
 
 model Saida_de_Produto {
   id             Int      @id @unique @default(autoincrement())
