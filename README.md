@@ -22,37 +22,45 @@ para as próximas produções e acompanhar seus status.
 
 ## Banco de dados e Relações
 
-![Alt text](image.png)
+![alt text](<Modelagem do banco de dados Doce Mordida.png>)
 
 ### Entidades
 
-- [x] Funcionario
-- [x] Fornecedor
-- [x] Entrada_de_Produto (Ainda não funcional)
-- [ ] Encomenda_de_Ingrediente
-- [ ] Saida_de_Produto
-- [ ] Produto
-- [ ] Estoque
-- [x] Categoria
+- [x] **Funcionario**
+  - id: number; nome: string; telefone: string; email: string; senha: string; cargo: string;
+- [x] **Fornecedor**
+  - id: number; nome_fornecedor: string; endereco: string; telefone: string; email: string;
+- [x] **Entrada_de_Produto (Ainda não funcional)**
+  - id: number; id_produto: number; id_fornecedor: number; id_funcionario: number; data: Date; valor_total_entrada: number; quantidade: number;
+- [ ] **Encomenda_de_Ingrediente**
+- [ ] **Saida_de_Produto**
+- [x] **Produto**
+  - id: number; id_categoria: number; nome_produto: string; descricao: string; valor_produto: number;
+- [x] **Estoque**
+  - id: number; id_produto: number; quantidade: number;
+- [x] **Categoria**
+  - id: number; tipo_categoria: string;
 
 ### Relações
 
-...
+
 
 ## Rotas e Funções
 
 - Gerenciamento dos Funcionario
   - **Cadastrar Funcionario**
-    - Descrição:
+    - Descrição: Endpoint para cadastrar um novo funcionário no sistema.
     - Post: http://localhost:3000/funcionario
+    - **Json Exemplo: {"nome": "Joao", "telefone": "11987654321", "email": "joao.silva@example.com", "senha": "senha123" "cargo": "Gerente"}**
   - **Consultar Funcionarios**
-    - Descrição:
+    - Descrição: endpoint para consultar a lista de funcionários cadastrados ou obter informações de um funcionário específico por meio do seu ID.
     - Get: http://localhost:3000/funcionario ou http://localhost:3000/funcionario/{id}
   - **Atualizar dados do Funcionario**
-    - Descrição:
+    - Descrição: endpoint para atualizar os dados de um funcionário existente com base no seu ID.
     - Patch: http://localhost:3000/funcionario/{id}
+    - **Json Exemplo: {"nome": "João"}**
   - **Deletar dados do Funcionario**
-    - Descrição:
+    - Descrição: endpoint para excluir os dados de um funcionário do sistema com base no seu ID.
     - Delete: http://localhost:3000/funcionario/{id}
 
 - Registro do Fluxo de Estoque:
@@ -70,11 +78,12 @@ para as próximas produções e acompanhar seus status.
 
 - Gerenciamento de Produtos
   - **Cadastrar, Consultar, Atualizar, Deletar Produtos**
-    - Descrição:
-    - Post Produto:
-    - Get Produto:
-    - Patch Produto:
-    - Delete Produto:
+    - Descrição: Gerenciamento sobre o banco de dados Produtos
+    - Post: http://localhost:3000/produto
+    - Get: http://localhost:3000/produto ou http://localhost:3000/produto/{id}
+    - Patch: http://localhost:3000/produto/{id}
+    - Delete: http://localhost:3000/produto/{id}
+    - **Json Exemplo: {"id_categoria": 1, "nome_produto": "Açucar - 1 Kg", "descricao": "Pacote de Açucar de 1kg", "valor_produto": 4.20}**
 
 - Gerenciamento de Categorias
   - **Cadastrar, Consultar, Atualizar, Deletar uma categoria**
@@ -83,6 +92,7 @@ para as próximas produções e acompanhar seus status.
     - Get Categoria: http://localhost:3000/categoria ou http://localhost:3000/categoria/{id}
     - Patch Categoria: http://localhost:3000/categoria/{id}
     - Delete Categoria: http://localhost:3000/categoria/{id}
+    - **Json Exemplo: {"tipo_categoria": "Ingrediente"}**
 
 - Gerenciamento de Fornecedores:
   - **Cadastrar, Consultar, Atualizar, Deletar uma Fornecedor**
@@ -91,14 +101,16 @@ para as próximas produções e acompanhar seus status.
     - Get: http://localhost:3000/fornecedor ou http://localhost:3000/fornecedor/{id}
     - Patch: http://localhost:3000/fornecedor/{id}
     - Delete: http://localhost:3000/fornecedor/{id}
+    - **Json Exemplo: {"nome_fornecedor": "Fornecedor A", "endereco": "Rua XYZ, 123", "telefone": "(11) 9876-5432", "email": "fornecedor@example.com"}**
 
 - Gerenciamento do Estoque:
   - **Cadastrar, Consultar, Atualizar, Deletar Estoque**
     - Descrição:
-    - Post Estoque:
-    - Get Estoque:
-    - Patch Estoque:
-    - Delete Estoque:
+    - Post: http://localhost:3000/estoque
+    - Get: http://localhost:3000/estoque ou http://localhost:3000/estoque/{id}
+    - Patch: http://localhost:3000/estoque/{id}
+    - Delete: http://localhost:3000/estoque/{id}
+    - **Json Exemplo: {"id_produto": 123, "quantidade": 50}**
 
 - Encomenda dos Ingredientes:
   - **Registrar um ingrediente encomendado** 
