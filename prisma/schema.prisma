@@ -1,4 +1,3 @@
-
 // Define o gerador de cliente Prisma para JavaScript
 generator client {
   provider = "prisma-client-js"
@@ -10,50 +9,109 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-
 model Funcionario {
-  id                         Int @id @unique @default(autoincrement()) 
-  nome                       String
-  cargo                      String
-  registros_de_estoque       RegistrodeEstoque[] // relação: (um Funcionário tem muitos Registros de Estoque)
-  ingredientes_encomendados  IngredienteEncomendado[] // relação: (um Funcionário pode fazer muitas Encomendas de Ingredientes)
+  id       Int    @id @unique @default(autoincrement())
+  nome     String
+  telefone String
+  email    String
+  senha    String
+  cargo    String
+
+  // Campo de Relações
+  entrada_de_produto       Entrada_de_Produto[] // Um funcionário pode estar associado a várias entradas de produtos
+  encomenda_de_ingrediente Encomenda_de_Ingrediente[] // Um funcionário pode estar associado a várias encomendas de ingredientes
+  saida_de_produto         Saida_de_Produto[] // Um funcionário pode estar associado a várias saídas de produtos
 }
 
-model ProdutoEmEstoque {
-  id                    Int @id @unique @default(autoincrement())
-  nome_do_produto       String
-  descricao             String
-  preco                 Int
-  quantidade_em_estoque Int
-  registros             RegistrodeEstoque[]
+model Fornecedor {
+  id              Int    @id @unique @default(autoincrement())
+  nome_fornecedor String
+  endereco        String
+  telefone        String
+  email           String
+
+  // Campo de Relações
+  entrada_de_produto Entrada_de_Produto[] // Um fornecedor pode estar associado a várias entradas de produtos
 }
 
-model IngredienteEmEstoque {
-  id                    Int @id @unique @default(autoincrement())
-  nome                  String
-  data_de_validade      DateTime
-  quantidade_em_estoque Int
-  encomendas            IngredienteEncomendado[]
+model Entrada_de_Produto {
+  id                  Int      @id @unique @default(autoincrement())
+  id_produto          Int
+  id_fornecedor       Int
+  id_funcionario      Int
+  data                DateTime
+  valor_total_entrada Int
+  quantidade          Int
+
+  // Campo de Relações
+  //FK - Uma entrada de produto está associada a um produto específico
+  produto     Produto     @relation(fields: [id_produto], references: [id])
+  //FK - Uma entrada de produto está associada a um fornecedor específico
+  fornecedor  Fornecedor  @relation(fields: [id_fornecedor], references: [id])
+  //FK - Uma entrada de produto está associada a um funcionário específico
+  funcionario Funcionario @relation(fields: [id_funcionario], references: [id])
+
+  encomenda_de_ingredientes Encomenda_de_Ingrediente[] // Uma entrada de produto pode estar associada a várias encomendas de ingredientes
 }
 
-model RegistrodeEstoque {
-  id                Int @id @unique @default(autoincrement())
-  id_funcionario    Int 
-  id_produto        Int 
-  tipo_de_transacao String
-  data              DateTime
-  quantidade        Int
-  funcionario       Funcionario      @relation(fields: [id_funcionario], references: [id])
-  produto           ProdutoEmEstoque @relation(fields: [id_produto], references: [id])
+model Encomenda_de_Ingrediente {
+  id               Int      @id @unique @default(autoincrement())
+  id_entrada       Int
+  id_funcionario   Int
+  status           String
+  data_de_validade DateTime
+
+  // Campo de Relações
+  //FK - Uma encomenda de ingrediente está associada a um funcionário específico
+  funcionario        Funcionario        @relation(fields: [id_funcionario], references: [id])
+  //FK - Uma encomenda de ingrediente está associada a uma entrada de produto específica
+  entrada_de_produto Entrada_de_Produto @relation(fields: [id_entrada], references: [id]) 
 }
 
-model IngredienteEncomendado {
-  id             Int @id @unique @default(autoincrement())
-  id_funcionario Int 
-  id_ingrediente Int
-  status         String
+model Saida_de_Produto {
+  id             Int      @id @unique @default(autoincrement())
+  id_funcionario Int
+  id_produto     Int
   data           DateTime
   quantidade     Int
-  funcionario    Funcionario          @relation(fields: [id_funcionario], references: [id])
-  ingrediente    IngredienteEmEstoque @relation(fields: [id_ingrediente], references: [id])
+
+  // Campo de Relações
+  //FK - Uma saída de produto está associada a um funcionário específico
+  funcionario Funcionario @relation(fields: [id_funcionario], references: [id])
+  //FK - Uma saída de produto está associada a um produto específico 
+  produto     Produto     @relation(fields: [id_produto], references: [id]) 
+}
+
+model Produto {
+  id            Int    @id @unique @default(autoincrement())
+  id_categoria  Int
+  nome_produto  String
+  descricao     String
+  valor_produto Int
+
+  // Campo de Relações
+  //FK - Um produto está associado a uma categoria específica
+  categoria Categoria @relation(fields: [id_categoria], references: [id]) 
+
+  entrada_de_produto Entrada_de_Produto[] // Um produto pode estar associado a várias entradas de produtos
+  saidas_de_produto  Saida_de_Produto[]   // Um produto pode estar associado a várias saídas de produtos
+  estoque            Estoque[]            // Um produto pode estar associado a vários registros no estoque
+}
+
+model Estoque {
+  id         Int @id @unique @default(autoincrement())
+  id_produto Int
+  quantidade Int
+
+  // Campo de Relações
+  //Fk - Um registro no estoque está associado a um produto específico
+  produto Produto @relation(fields: [id_produto], references: [id]) 
+}
+
+model Categoria {
+  id             Int    @id @unique @default(autoincrement())
+  tipo_categoria String
+
+  // Campo de Relações
+  produto Produto[] // Uma categoria pode estar associada a vários produtos
 }
