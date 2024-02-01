@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsDateString, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsDateString, IsString, IsOptional } from 'class-validator';
 
 export class CreateEncomendaDeIngredienteDto {
     @IsInt({ message: 'O ID da entrada deve ser um número inteiro.' })
@@ -13,8 +13,8 @@ export class CreateEncomendaDeIngredienteDto {
     @IsNotEmpty({ message: 'O status não pode estar vazio.' })
     status: string;
 
-    //@IsDateString()
-    @IsNotEmpty({ message: 'A data de validade não pode estar vazia.' })
-    data_de_validade: Date;
+    @IsDateString()
+    @IsOptional()
+    data_de_validade?: Date;
 }
 

@@ -9,7 +9,6 @@ export class CreateSaidaDeProdutoDto {
     @IsNotEmpty({ message: 'O ID do produto não pode estar vazio.' })
     id_produto: number;
 
-    @IsDate({ message: 'A data deve ser um objeto Date válido.' })
     @IsNotEmpty({ message: 'A data não pode estar vazia.' })
     data: Date;
 

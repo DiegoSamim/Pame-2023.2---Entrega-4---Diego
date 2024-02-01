@@ -30,11 +30,11 @@ para as próximas produções e acompanhar seus status.
   - id: number; nome: string; telefone: string; email: string; senha: string; cargo: string;
 - [x] **Fornecedor**
   - id: number; nome_fornecedor: string; endereco: string; telefone: string; email: string;
-- [x] **Entrada_de_Produto**
+- [] **Entrada_de_Produto**
   - id: number; id_produto: number; id_fornecedor: number; id_funcionario: number; data: Date; valor_total_entrada: number; quantidade: number;
-- [x] **Encomenda_de_Ingrediente**
+- [] **Encomenda_de_Ingrediente**
   - id: number; id_entrada: number; id_funcionario: number; status: string; data_de_validade: Date;
-- [x] **Saida_de_Produto**
+- [] **Saida_de_Produto**
   - id: number; id_funcionario: number; id_produto: number; data: Date; quantidade: number;
 - [x] **Produto**
   - id: number; id_categoria: number; nome_produto: string; descricao: string; valor_produto: number;

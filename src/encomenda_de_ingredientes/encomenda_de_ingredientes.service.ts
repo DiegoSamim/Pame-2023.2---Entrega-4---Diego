@@ -22,19 +22,23 @@ export class EncomendaDeIngredientesService {
   }
 
   async update(id: number, updateEncomendaDeIngredienteDto: UpdateEncomendaDeIngredienteDto) {
-    // Atualiza a encomenda de ingrediente pelo ID usando os dados do DTO de atualização
-    const updatedEncomenda = await this.prisma.encomenda_de_Ingrediente.update({ where: { id }, data: updateEncomendaDeIngredienteDto });
+    // Verifique se a data de validade foi fornecida no DTO de atualização
+    if (updateEncomendaDeIngredienteDto.data_de_validade) {
+      // Converta a data de validade para o formato desejado
+      const dataDeValidadeFormatada = new Date(updateEncomendaDeIngredienteDto.data_de_validade);
 
-    // Verifica se algum campo além do status foi atualizado
-    const updatedFields = Object.keys(updateEncomendaDeIngredienteDto);
-    const statusUpdated = updatedFields.includes('status');
-
-    // Retorna uma mensagem indicando o resultado da atualização
-    if (statusUpdated) {
-      return `Status da encomenda com ID ${id} atualizado para "${updatedEncomenda.status}"`;
+      // Atualize a encomenda de ingrediente pelo ID usando os dados do DTO de atualização
+      await this.prisma.encomenda_de_Ingrediente.update({
+        where: { id },
+        data: {
+          data_de_validade: dataDeValidadeFormatada, // Atribua a data de validade formatada
+        },
+      });
     } else {
-      return `Encomenda de ingrediente com ID ${id} atualizada com sucesso`;
+      await this.prisma.encomenda_de_Ingrediente.update({ where: { id }, data: updateEncomendaDeIngredienteDto });
     }
+
+    return `Encomenda de ingrediente com ID ${id} atualizada com sucesso`;
   }
 
   async remove(id: number) {

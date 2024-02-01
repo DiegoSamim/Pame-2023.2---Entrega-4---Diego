@@ -14,7 +14,7 @@ export class CreateEntradaDeProdutoDto {
     id_funcionario: number;
 
     // @IsDate({ message: 'A data da entrada deve ser uma data válida.' }) Não funcional ainda 
-    @IsNotEmpty({ message: 'A data da entrada não pode estar vazia.' })
+    //@IsNotEmpty({ message: 'A data da entrada não pode estar vazia.' })
     data: Date;
 
     @IsNumber({ allowNaN: false }, { message: 'O valor total da entrada deve ser um número.' })

@@ -60,7 +60,7 @@ model Encomenda_de_Ingrediente {
   id_entrada       Int      @unique
   id_funcionario   Int
   status           String
-  data_de_validade DateTime
+  data_de_validade DateTime?
 
   // Campo de Relações
   // FK - Uma encomenda de ingrediente está associada a um funcionário específico
