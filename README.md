@@ -12,11 +12,12 @@ para as próximas produções e acompanhar seus status.
 - [x] Criação do Arquitetura Nest
 - [x] Instalação do Prisma
 - [x] Desenvolvimento do Schema
-- [ ] Imports do Prisma
+- [x] Imports do Prisma
 - [ ] Criação das entidades (resource)
 - [ ] Criação das rotas (Controller)
 - [ ] Desenvolvimento do banco de dados (Service)
-- [ ] Testagem
+- [ ] Validação
+- [ ] Autenticação
 
 
 ## Banco de dados e Relações
@@ -25,7 +26,14 @@ para as próximas produções e acompanhar seus status.
 
 ### Entidades
 
-
+- [x] Funcionario
+- [x] Fornecedor
+- [x] Entrada_de_Produto (Ainda não funcional)
+- [ ] Encomenda_de_Ingrediente
+- [ ] Saida_de_Produto
+- [ ] Produto
+- [ ] Estoque
+- [x] Categoria
 
 ### Relações
 
@@ -36,16 +44,16 @@ para as próximas produções e acompanhar seus status.
 - Gerenciamento dos Funcionario
   - **Cadastrar Funcionario**
     - Descrição:
-    - Post Funcionario:
+    - Post: http://localhost:3000/funcionario
   - **Consultar Funcionarios**
     - Descrição:
-    - Get Funcionario:
+    - Get: http://localhost:3000/funcionario ou http://localhost:3000/funcionario/{id}
   - **Atualizar dados do Funcionario**
     - Descrição:
-    - Patch Funcionario:
+    - Patch: http://localhost:3000/funcionario/{id}
   - **Deletar dados do Funcionario**
     - Descrição:
-    - Delete Funcionario:
+    - Delete: http://localhost:3000/funcionario/{id}
 
 - Registro do Fluxo de Estoque:
   - **(Funcionario) Registrar entrada de produto**
@@ -71,18 +79,18 @@ para as próximas produções e acompanhar seus status.
 - Gerenciamento de Categorias
   - **Cadastrar, Consultar, Atualizar, Deletar uma categoria**
     - Descrição:
-    - Post Categoria:
-    - Get Categoria:
-    - Patch Categoria:
-    - Delete Categoria:
+    - Post Categoria: http://localhost:3000/categoria
+    - Get Categoria: http://localhost:3000/categoria ou http://localhost:3000/categoria/{id}
+    - Patch Categoria: http://localhost:3000/categoria/{id}
+    - Delete Categoria: http://localhost:3000/categoria/{id}
 
 - Gerenciamento de Fornecedores:
   - **Cadastrar, Consultar, Atualizar, Deletar uma Fornecedor**
     - Descrição:
-    - Post Fornecedor:
-    - Get Categoria:
-    - Patch Categoria:
-    - Delete Categoria:
+    - Post: http://localhost:3000/fornecedor
+    - Get: http://localhost:3000/fornecedor ou http://localhost:3000/fornecedor/{id}
+    - Patch: http://localhost:3000/fornecedor/{id}
+    - Delete: http://localhost:3000/fornecedor/{id}
 
 - Gerenciamento do Estoque:
   - **Cadastrar, Consultar, Atualizar, Deletar Estoque**
