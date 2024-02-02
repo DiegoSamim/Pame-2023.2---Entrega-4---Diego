@@ -7,28 +7,34 @@ import { UpdateEncomendaDeIngredienteDto } from './dto/update-encomenda_de_ingre
 export class EncomendaDeIngredientesController {
   constructor(private readonly encomendaDeIngredientesService: EncomendaDeIngredientesService) {}
 
+  // Rota para criar uma nova encomenda de ingrediente
   @Post()
-  create(@Body() createEncomendaDeIngredienteDto: CreateEncomendaDeIngredienteDto) {
+  createEncomendaDeIngrediente(@Body() createEncomendaDeIngredienteDto: CreateEncomendaDeIngredienteDto) {
     return this.encomendaDeIngredientesService.create(createEncomendaDeIngredienteDto);
   }
 
+  // Rota para encontrar todas as encomendas de ingredientes
   @Get()
-  findAll() {
+  findAllEncomendasDeIngrediente() {
     return this.encomendaDeIngredientesService.findAll();
   }
 
+  // Rota para encontrar uma encomenda de ingrediente por ID
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOneEncomendaDeIngrediente(@Param('id') id: string) {
     return this.encomendaDeIngredientesService.findOne(+id);
   }
 
+  // Rota para atualizar uma encomenda de ingrediente por ID
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEncomendaDeIngredienteDto: UpdateEncomendaDeIngredienteDto) {
+  updateEncomendaDeIngrediente(@Param('id') id: string, @Body() updateEncomendaDeIngredienteDto: UpdateEncomendaDeIngredienteDto) {
     return this.encomendaDeIngredientesService.update(+id, updateEncomendaDeIngredienteDto);
   }
 
+  // Rota para remover uma encomenda de ingrediente por ID
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  removeEncomendaDeIngrediente(@Param('id') id: string) {
     return this.encomendaDeIngredientesService.remove(+id);
   }
+
 }

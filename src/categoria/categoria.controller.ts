@@ -7,28 +7,34 @@ import { UpdateCategoriaDto } from './dto/update-categoria.dto';
 export class CategoriaController {
   constructor(private readonly categoriaService: CategoriaService) {}
 
+  // Rota para criar uma nova categoria
   @Post()
-  create(@Body() createCategoriaDto: CreateCategoriaDto) {
+  createCategoria(@Body() createCategoriaDto: CreateCategoriaDto) {
     return this.categoriaService.create(createCategoriaDto);
   }
 
+  // Rota para encontrar todas as categorias
   @Get()
-  findAll() {
+  findAllCategorias() {
     return this.categoriaService.findAll();
   }
 
+  // Rota para encontrar uma categoria por ID
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOneCategoria(@Param('id') id: string) {
     return this.categoriaService.findOne(+id);
   }
 
+  // Rota para atualizar uma categoria por ID
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCategoriaDto: UpdateCategoriaDto) {
+  updateCategoria(@Param('id') id: string, @Body() updateCategoriaDto: UpdateCategoriaDto) {
     return this.categoriaService.update(+id, updateCategoriaDto);
   }
 
+  // Rota para remover uma categoria por ID
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  removeCategoria(@Param('id') id: string) {
     return this.categoriaService.remove(+id);
   }
+
 }

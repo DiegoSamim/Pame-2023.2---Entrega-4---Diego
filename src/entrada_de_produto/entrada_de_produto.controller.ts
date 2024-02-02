@@ -7,28 +7,34 @@ import { UpdateEntradaDeProdutoDto } from './dto/update-entrada_de_produto.dto';
 export class EntradaDeProdutoController {
   constructor(private readonly entradaDeProdutoService: EntradaDeProdutoService) {}
 
+  // Rota para criar uma nova entrada de produto
   @Post()
-  create(@Body() createEntradaDeProdutoDto: CreateEntradaDeProdutoDto) {
+  createEntradaDeProduto(@Body() createEntradaDeProdutoDto: CreateEntradaDeProdutoDto) {
     return this.entradaDeProdutoService.create(createEntradaDeProdutoDto);
   }
 
+  // Rota para encontrar todas as entradas de produto
   @Get()
-  findAll() {
+  findAllEntradasDeProduto() {
     return this.entradaDeProdutoService.findAll();
   }
 
+  // Rota para encontrar uma entrada de produto por ID
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOneEntradaDeProduto(@Param('id') id: string) {
     return this.entradaDeProdutoService.findOne(+id);
   }
 
+  // Rota para atualizar uma entrada de produto por ID
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEntradaDeProdutoDto: UpdateEntradaDeProdutoDto) {
+  updateEntradaDeProduto(@Param('id') id: string, @Body() updateEntradaDeProdutoDto: UpdateEntradaDeProdutoDto) {
     return this.entradaDeProdutoService.update(+id, updateEntradaDeProdutoDto);
   }
 
+  // Rota para remover uma entrada de produto por ID
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  removeEntradaDeProduto(@Param('id') id: string) {
     return this.entradaDeProdutoService.remove(+id);
   }
+
 }

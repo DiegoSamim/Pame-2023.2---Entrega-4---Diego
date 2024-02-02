@@ -7,28 +7,34 @@ import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 export class FuncionarioController {
   constructor(private readonly funcionarioService: FuncionarioService) {}
 
+  // Rota para criar um novo funcionário
   @Post()
-  create(@Body() createFuncionarioDto: CreateFuncionarioDto) {
+  createFuncionario(@Body() createFuncionarioDto: CreateFuncionarioDto) {
     return this.funcionarioService.create(createFuncionarioDto);
   }
 
+  // Rota para encontrar todos os funcionários
   @Get()
-  findAll() {
+  findAllFuncionarios() {
     return this.funcionarioService.findAll();
   }
 
+  // Rota para encontrar um funcionário por ID
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOneFuncionario(@Param('id') id: string) {
     return this.funcionarioService.findOne(+id);
   }
 
+  // Rota para atualizar um funcionário por ID
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFuncionarioDto: UpdateFuncionarioDto) {
+  updateFuncionario(@Param('id') id: string, @Body() updateFuncionarioDto: UpdateFuncionarioDto) {
     return this.funcionarioService.update(+id, updateFuncionarioDto);
   }
 
+  // Rota para remover um funcionário por ID
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  removeFuncionario(@Param('id') id: string) {
     return this.funcionarioService.remove(+id);
   }
+
 }

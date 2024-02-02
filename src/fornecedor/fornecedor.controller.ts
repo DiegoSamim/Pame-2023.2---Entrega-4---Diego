@@ -7,28 +7,34 @@ import { UpdateFornecedorDto } from './dto/update-fornecedor.dto';
 export class FornecedorController {
   constructor(private readonly fornecedorService: FornecedorService) {}
 
+  // Rota para criar um novo fornecedor
   @Post()
-  create(@Body() createFornecedorDto: CreateFornecedorDto) {
+  createFornecedor(@Body() createFornecedorDto: CreateFornecedorDto) {
     return this.fornecedorService.create(createFornecedorDto);
   }
 
+  // Rota para encontrar todos os fornecedores
   @Get()
-  findAll() {
+  findAllFornecedores() {
     return this.fornecedorService.findAll();
   }
 
+  // Rota para encontrar um fornecedor por ID
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOneFornecedor(@Param('id') id: string) {
     return this.fornecedorService.findOne(+id);
   }
 
+  // Rota para atualizar um fornecedor por ID
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFornecedorDto: UpdateFornecedorDto) {
+  updateFornecedor(@Param('id') id: string, @Body() updateFornecedorDto: UpdateFornecedorDto) {
     return this.fornecedorService.update(+id, updateFornecedorDto);
   }
 
+  // Rota para remover um fornecedor por ID
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  removeFornecedor(@Param('id') id: string) {
     return this.fornecedorService.remove(+id);
   }
+
 }

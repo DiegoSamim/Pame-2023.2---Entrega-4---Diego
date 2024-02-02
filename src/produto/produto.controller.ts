@@ -7,28 +7,34 @@ import { UpdateProdutoDto } from './dto/update-produto.dto';
 export class ProdutoController {
   constructor(private readonly produtoService: ProdutoService) {}
 
+  // Rota para criar um novo produto
   @Post()
-  create(@Body() createProdutoDto: CreateProdutoDto) {
+  createProduto(@Body() createProdutoDto: CreateProdutoDto) {
     return this.produtoService.create(createProdutoDto);
   }
 
+  // Rota para encontrar todos os produtos
   @Get()
-  findAll() {
+  findAllProdutos() {
     return this.produtoService.findAll();
   }
 
+  // Rota para encontrar um produto por ID
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOneProduto(@Param('id') id: string) {
     return this.produtoService.findOne(+id);
   }
 
+  // Rota para atualizar um produto por ID
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProdutoDto: UpdateProdutoDto) {
+  updateProduto(@Param('id') id: string, @Body() updateProdutoDto: UpdateProdutoDto) {
     return this.produtoService.update(+id, updateProdutoDto);
   }
 
+  // Rota para remover um produto por ID
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  removeProduto(@Param('id') id: string) {
     return this.produtoService.remove(+id);
   }
+
 }
